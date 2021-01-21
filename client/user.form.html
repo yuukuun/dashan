@@ -1,0 +1,150 @@
+<!--------------------------------------------------用户框----------------------------------------------------->
+<div class="modal fade" id="usersform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body"> 
+ <!--        <input  is-invalid  is-valid> -->
+       <!--    <form method="post" action="server/user.pass.php" id="userform"> -->
+
+          <form method="post" action="server/users.class.php" id="userform">
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label for="validationServer01">用户名：</label>
+              <!--   <input type="text" class="form-control is-valid" id="validationServer01" value="Mark" required> -->
+                <input type="username" class="form-control" id="username" name="username" value="" required>
+                <div id="userinvalid" class="invalid-feedback">用户名输入三位数字！</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label for="validationServer03">密码：</label>
+                <!-- <input type="text" class="form-control is-invalid" id="validationServer03" required> -->
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div id="passinvalid" class="invalid-feedback">密码输入三位数字！</div>
+                
+              </div>
+            </div>
+            <button  onclick="USERS.login()" id="logins" type="button" class="btn btn-primary" >登陆</button>
+            <button  onclick="USERS.phone()" id="logins" type="button" class="btn btn-secondary" >手机登陆</button>
+           <!--  <button  id="close" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button> -->
+          </form>
+          
+
+          <!-- 手机登陆 -->
+           <form method="post" action="server/tenc.sendsms.php" id="phoneform">
+        <!--    <form method="post" action="t.php" id="phoneform"> -->
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label for="validationServer01">手机号：</label>
+                <input type="username" class="form-control" id="phone" name="phone" value="" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label for="validationServer03">验证码：</label>
+                <input type="password" class="form-control" id="vcode" name="vcode" required>
+              </div>
+            </div>
+             <button  type="button" class="btn btn-primary" >登陆</button>
+            <button  onclick="USERS.getcode()" id="vcode" type="button" class="btn btn-secondary">获取验证码</button>
+
+           
+          </form>
+          <!--  信息 -->
+           <iframe id="loginresmes" name="loginresmes"  style=" border:none; width: 100%; height:  100%;"></iframe>  
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------------------------------------------用户 javascript----------------------------------------------------->
+<script type="text/javascript">
+'use strict';
+//使用命名空间以后不用var来定义变量了
+var USERS = {}; //USERS对象定义，防止重名
+
+//初始化
+USERS.userform = document.getElementById("userform"); //form
+USERS.phoneform = document.getElementById("phoneform"); //phoneform form
+USERS.loginresmes = document.getElementById("loginresmes"); //phoneform form
+USERS.userform.target = "loginresmes";                     //提交后显示方式
+// USERS.userform.target = "_blank";                     //提交后显示方式
+USERS.phoneform.target = "_blank";                     //提交后显示方式
+USERS.username = document.getElementById("username");   //获取用户名
+USERS.password = document.getElementById("password");   //获取密码
+USERS.userinvalid = document.getElementById("userinvalid");  //获取提示div
+USERS.passinvalid = document.getElementById("passinvalid"); //获取提示div2
+USERS.logins = document.getElementById("logins");           //获取登陆按钮
+USERS.nums = /^\d{3}$/;  //定义密码和用户名要求
+
+USERS.phone = document.getElementById("phone");   //获取用户名
+
+//用户和密码框初始化
+USERS.users = function() {
+  userform.style = "display:block";  
+  phoneform.style = "display:none"; 
+  USERS.loginresmes.style = "display:none"; 
+   USERS.username.value = "";
+   USERS.password.value = "";
+   USERS.logins.setAttribute("data-dismiss", "");
+   USERS.username.setAttribute("class", "form-control ");
+   USERS.password.setAttribute("class", "form-control ");
+}
+
+//表单验证验证
+USERS.yanzheng = function() {
+if (USERS.username.value != "" && USERS.nums.test(USERS.username.value)) { USERS.username.setAttribute("class", "form-control is-valid"); }else{ USERS.username.setAttribute("class", "form-control is-invalid"); USERS.userinvalid.setAttribute("class", "invalid-feedback"); }
+if (USERS.password.value != "" && USERS.nums.test(USERS.password.value)) { USERS.password.setAttribute("class", "form-control is-valid"); }else{ USERS.password.setAttribute("class", "form-control is-invalid"); USERS.passinvalid.setAttribute("class", "invalid-feedback"); }
+
+//验证标用户和密码框提交
+USERS.yanzheng = function() {
+  
+}
+if (USERS.username.value != "" && USERS.nums.test(USERS.username.value) && USERS.password.value != "" && USERS.nums.test(USERS.password.value) ) {
+        USERS.username.setAttribute("class", "form-control is-valid");
+        USERS.password.setAttribute("class", "form-control is-valid");
+        //USERS.logins.setAttribute("data-dismiss", "modal");
+        USERS.userform.submit(); 
+
+        USERS.userform.style = "display:none";  
+        USERS.phoneform.style = "display:none"; 
+        USERS.loginresmes.style = "display:block"; 
+
+       //s
+        // setTimeout(function(){
+        //     location.reload();
+        // },2000);
+  }
+  
+}
+
+// 登陆
+USERS.login = function() {
+  USERS.yanzheng();
+}
+
+
+////////////////////////////////////////////////////////////////////
+USERS.vphone = /^\d{11}$/;  //定义密码和用户名要求
+
+USERS.phone = function() {
+   userform.style = "display:none";  
+   phoneform.style = "display:block"; 
+}
+
+USERS.getcode = function() {
+  // ????
+    if ( USERS.phone.value != "" ) {
+        USERS.phoneform.submit(); 
+    }
+}
+
+
+</script>

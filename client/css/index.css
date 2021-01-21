@@ -1,0 +1,101 @@
+/***********************标题现实***************************/
+
+.btit{
+    text-align: left;
+    font: 17px/35px arial,sans-serif;
+    background-color: #ccccca;
+    color: black;
+    text-align: center;
+    border-top: 20px solid #f8f9fa;
+}
+.tit{
+      float: left; 
+     /* position: absolute;*/
+      display:inline;
+      font: 16px/28px arial,sans-serif; 
+      color: #022;
+     /* height: 50px;*/
+      background-color: #e8e7e3;
+      border: 1px solid #f8f9fa;
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+}
+.tit:hover {    
+      background-color:  #ccccca; 
+}
+
+
+.icon { 
+    border: 10px #f8f9fa solid;
+    border-radius: 15px;
+    padding: 3px;
+    padding-bottom: 0px;
+    font: 12px/20px arial,sans-serif; 
+    text-align: center;
+     /* float: left;*/
+    overflow: hidden;
+  /*    white-space: nowrap;*/
+      text-overflow: ellipsis;
+
+   /* float: left;*/
+  /*  white-space: nowrap;*/
+ }
+ .icon:hover {    
+    background-color: #ccccca;
+    font: bold 12px/20px arial,sans-serif; 
+    /*background-color: #B5B5B5;*/
+    /*padding: 4px;*/
+} 
+
+
+/***********************代码样式***************************/
+  .contents pre {
+    position: relative;
+    border-radius: 5px;
+    padding: 1px;
+    width: 100%;
+
+      padding: 7px;
+       border-radius: 6px;
+       font: 14px arial,sans-serif; 
+       background-color: #2E3436;
+       color: #e8e7e3;
+  
+  }
+  /*按钮控制*/
+  pre .btn-pre-copy{
+      position: absolute;
+     /* position: fixed;*/
+      top: 10px;
+      right: 15px;
+
+      font-size: 14px;
+      line-height: 1;
+      cursor: pointer;
+      color: hsla(0,0%,54.9%,.8);
+      transition: color .1s;
+     /* 按钮颜色*/
+      border-radius: 3px;
+      background-color:#fff;
+      padding: 3px;
+  }
+  textarea{ width: 100%;  }
+
+      /*总体文本大小*/
+      .contents {
+        margin: 5px;
+        word-spacing: 2px;
+        font: 16px/26px arial,sans-serif;
+        color: #333;
+        /*background-color: green;*/
+        
+        white-space: pre-wrap;           /* css-3 */
+        white-space: -moz-pre-wrap;      /* Mozilla, since 1999 */
+        white-space: -pre-wrap;          /* Opera 4-6 */
+        white-space: -o-pre-wrap;        /* Opera 7 */
+        word-wrap: break-word;           /* Internet Explorer 5.5+ */
+      }
+      /*代码区域大小*/
+         /*.codecopy pre {*/
