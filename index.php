@@ -82,10 +82,12 @@ function foreachs($dir){
 			//根据后缀是不是音乐文件
 			if ( $ext == ".flac" || $ext == ".mp3" || $ext == ".wav" ) {
 				//输出音频
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$value."')\" >".$tit."</div></a>";
+				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$value."')\" >".$tit."</div></a>";
+				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
 			}else{
 				//输出视频
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$value."')\" >".$tit."</div></a>";
+				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$value."')\" >".$tit."</div></a>";
+				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
 			}
 		}
 	}
