@@ -82,12 +82,12 @@ function foreachs($dir){
 			//根据后缀是不是音乐文件
 			if ( $ext == ".flac" || $ext == ".mp3" || $ext == ".wav" ) {
 				//输出音频
-				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$value."')\" >".$tit."</div></a>";
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
+				 echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$value."')\" >".$tit."</div></a>";
+				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
 			}else{
 				//输出视频
-				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$value."')\" >".$tit."</div></a>";
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
+				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$value."')\" >".$tit."</div></a>";
+				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
 			}
 		}
 	}
@@ -116,29 +116,9 @@ echo "</div></span>";
 
 ///////////////////////////////////////////////////////引入 ///////////////////////////////////////////////////////
 require_once "client/html.footer.html";	//尾静态文	
-require_once "client/media.player.html";	// 媒体播放器
+
 
 ?>
 
-<!----------------------------------------------- 文章 视频 音乐的显示与控制 js ----------------------------------------------------->
-<script type="text/javascript">
-'use strict';
-//显示文章
- function ftexttit(){
-    document.getElementById("texttit").style.display = "block";
-    document.getElementById("videotit").style.display = "none";
-    document.getElementById("musictit").style.display = "none";
-}
-//显示视频
-function fvideotit(){
-    document.getElementById("texttit").style.display = "none";
-    document.getElementById("videotit").style.display = "block";
-    document.getElementById("musictit").style.display = "none";
-}
-//显示音乐
-function fmusictit(){
-    document.getElementById("texttit").style.display = "none";
-    document.getElementById("videotit").style.display = "none";
-    document.getElementById("musictit").style.display = "block";
-}
-</script>
+
+
