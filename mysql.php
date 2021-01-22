@@ -1,17 +1,12 @@
 <?php
 //如果打开 不显示错误
 // error_reporting(E_ALL^E_NOTICE^E_WARNING);
-
-//jsdelivr url
-// $jsdelivr_url = "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/";
-// function jsdelivr(){
-//   return "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/";
-// }
-
+//root是mysql用户名，w123456密码
 
 //链接mysql函数
 function mysql_con(){
     //链接数据
+    //root是mysql用户名，w123456 mysql密码，dashan_db是数据库名字。都改成自己的！
     $mysqlcon = new MySQLi('127.0.0.1','root','w123456','dashan_db'); 
     //编码设置
     // $mysqlcon->query("set names utf8");

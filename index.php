@@ -4,7 +4,7 @@ session_start();
 require_once "client/main.dilog.php";	//弹框文件
 require_once "client/html.header.html";	//头部静态文件
 require_once "mysql.php";	//数据库
-
+// echo md5("admin");
 ?>
 
 
@@ -79,16 +79,18 @@ function foreachs($dir){
 			$arr = explode('/', $value);	//'/'分数组
 			$tit = end($arr);				//数组最后一个元素
 			$tit = strstr($tit,'.',true);	//'.'分割
+			$jsdelivr_url = "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.01/";
 			//根据后缀是不是音乐文件
 			if ( $ext == ".flac" || $ext == ".mp3" || $ext == ".wav" ) {
 				//输出音频
 				 // echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$value."')\" >".$tit."</div></a>";
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
+				//echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.01/".$value."')\" >".$tit."</div></a>";
+				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
 		
 			}else{
 				//输出视频
 				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$value."')\" >".$tit."</div></a>";
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/".$value."')\" >".$tit."</div></a>";
+				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
 			}
 		}
 	}

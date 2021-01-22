@@ -38,11 +38,12 @@ $_SESSION['captch'] = $captch->getText(); //小写
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 
-    <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
+<!--     <link href="css/signin.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.01/client/css/signin.css">
   </head>
   <body class="text-center">
 
@@ -57,8 +58,8 @@ $_SESSION['captch'] = $captch->getText(); //小写
           echo "请登陆！"; 
        }
       ?></h4>
-	  <div class="form-group"><input type="text" id="username" name="username" class="form-control" placeholder="用户名" required autofocus></div>
-	  <div class="form-group"><input type="password"  id="password" name="password" class="form-control" placeholder="密码" required></div>
+	  <div class="form-group"><input type="text" id="username" name="username" class="form-control" placeholder="用户名：admin" required autofocus></div>
+	  <div class="form-group"><input type="password"  id="password" name="password" class="form-control" placeholder="密码：admin" required></div>
     <div class="form-group"><input type="text"  id="imgcode" name="imgcode" class="form-control" placeholder="验证码" required></div>
 
 
