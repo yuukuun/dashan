@@ -58,13 +58,16 @@ class Admin {
 
 ////// 判断是否登陆用户 //////
 $nav=<<<EOF
-<div class="nav-scroller bg-dark shadow-sm">
- <nav class="nav nav-underline">
-  	 <a  class="nav-link" href="index.php">主页</a>
-     <a onclick="DILOG.note()" class="nav-link" href="#" > <div data-target="#write" data-toggle="modal" >记事</div></a>
-	<a onclick="DILOG.instxt()" class="nav-link" href="#" > <div data-target="#write" data-toggle="modal" >写文章</div></a>
-  </nav>
-</div><main role="main" class="container-fluid"><hr>
+     <div class="nav-scroller"><nav class="nav navbar-expand-lg fixed-top navbar-dark bg-dark py-2 mb-2">
+    	<a  class="nav-link" href="index.php">主页</a>
+    	<a onclick="DILOG.note()" class="nav-link" href="#" > <div data-target="#write" data-toggle="modal" >记事</div></a>
+		<a onclick="DILOG.instxt()" class="nav-link" href="#" > <div data-target="#write" data-toggle="modal" >写文章</div></a>
+		<a class="nav-link" href="#" >|</a>
+		<a class="nav-link" href="#" >主页</a>
+		<a class="nav-link" href="#" >主页</a>
+		<a class="nav-link" href="#" >主页</a>
+		<a class="nav-link" href="#" >主页</a>
+ 	</nav></div><hr>
 EOF;
 	echo "$nav";
 	////// 对象 //////

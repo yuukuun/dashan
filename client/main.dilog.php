@@ -77,7 +77,7 @@
 
          
    
-           <?php  if ( isset($_SESSION['username']) && isset($_SESSION['password']) && $_SERVER['PHP_SELF'] == "/admin.php") {    
+           <?php  if ( isset($_SESSION['username']) && isset($_SESSION['password']) ) {    
                echo "<div><button onclick=\"DILOG.delete()\" id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\"  data-dismiss=\"modal\">删除</button></div>";
               }    
             ?>

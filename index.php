@@ -9,26 +9,39 @@ require_once "mysql.php";	//数据库
 
 
 <!----------------------------------------------- 导航部分 ----------------------------------------------------->
-<div class="nav-scroller bg-dark shadow-sm">
-  <nav class="nav nav-underline">
+
+
+<!--   <div class="nav-scroller">
+    <nav class="nav d-flex navbar-expand-lg fixed-top navbar-dark bg-dark "> -->
+
+  <div class="nav-scroller">
+    <nav class="nav navbar-expand-lg fixed-top navbar-dark bg-dark py-2 mb-2">
+
+    	<!-- <li class="nav-item"><a class="p-2 text-muted" href="index.php?s=" >111</a></li> -->
+<!--      	 <a class="nav-link" href="#">bbbb</a> -->
  
+
     <?php
     	//访客的导航按钮
 		if ( !isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
-			echo "<a class=\"nav-link \" href=\"client/sign.php\" target=\"_blank\">登陆</a>";
+			echo "<a class=\"nav-link \" href=\"client/sign.php\" target=\"_blank\">&nbsp;登陆</a>";
 		//登陆用户的显示导航按钮
 		}else{
-		 	echo "<a onclick=\"DILOG.getadmin()\" class=\"nav-link\" href=\"admin.php\" target=\"_blank\"><div>@</div></a>";
+		 	echo "<a onclick=\"DILOG.getadmin()\" class=\"nav-link\" href=\"admin.php\" target=\"_blank\"><div>&nbsp;后台</div></a>";
 		 	echo  "<a onclick=\"DILOG.note()\" class=\"nav-link\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >记事</div></a>";
 		 	echo  "<a onclick=\"DILOG.instxt()\" class=\"nav-link\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >写文章</div></a>";
 		}
 	?>
+	<a class="nav-link" href="#">|</a>
 	<a onclick="ftexttit()" class="nav-link" href="#">文章</a>
-    <a onclick="fmusictit()" class="nav-link " href="#">音频</a>
+    <a onclick="fmusictit()" class="nav-link" href="#">音频</a>
     <a onclick="fvideotit()" class="nav-link" href="#">视频</a>
+
+
     
-  </nav>
- </div><main role="main" class="container "><hr>
+
+
+ </nav></div><main role="main" class="container">
 
 
 
@@ -68,6 +81,21 @@ function foreachs($dir){
 			//目录名子标题
 			$arr = explode('/', $value);
 			$btit = end($arr);
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
+			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
 			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
 			//如果$value是目录的化调用本身
 			foreachs($value);
