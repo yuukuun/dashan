@@ -1,6 +1,5 @@
 <?php
 session_start();
-// error_reporting(E_ALL^E_NOTICE^E_WARNING);
 /////////////////////////////////////////////////////// 引入 ///////////////////////////////////////////////////////
 require_once "client/main.dilog.php";	//弹框文件
 require_once "client/html.header.html";	//头部静态文件

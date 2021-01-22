@@ -1,5 +1,5 @@
 <?php
-//显示错误
+//如果打开 不显示错误
 // error_reporting(E_ALL^E_NOTICE^E_WARNING);
 
 //链接mysql函数
@@ -20,7 +20,7 @@ function mysql_con(){
 }
 
 
-// echo $_SERVER['PHP_SELF'];
+
 
 
 

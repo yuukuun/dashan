@@ -1,7 +1,30 @@
 <?php
 session_start();
+require_once 'captcha/CaptchaBuilderInterface.php';
+require_once 'captcha/CaptchaBuilder.php';
 require_once "../mysql.php";  //数据库
+
+
+$captch = new CaptchaBuilder();
+$captch->initialize([
+    'width' => 150,     // 宽度
+    'height' => 50,     // 高度
+    'line' => false,    // 直线
+    'curve' => true,    // 曲线
+    'noise' => 100,       // 噪点背景
+    'fonts' => []       // 字体
+]);
+$captch->create();
+// $captch->output(1);
+$captch->save('temp/1.png',1);
+
+$_SESSION['captch'] = $captch->getText(); //小写
+
+
+
+
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -36,10 +59,11 @@ require_once "../mysql.php";  //数据库
       ?></h4>
 	  <div class="form-group"><input type="text" id="username" name="username" class="form-control" placeholder="用户名" required autofocus></div>
 	  <div class="form-group"><input type="password"  id="password" name="password" class="form-control" placeholder="密码" required></div>
+    <div class="form-group"><input type="text"  id="imgcode" name="imgcode" class="form-control" placeholder="验证码" required></div>
 
 
-	  <button onclick="USERS.submit()" class="btn btn-lg btn-primary btn-block" id="btnlogin">登陆</button>
-
+	   <div class="form-group"><button onclick="USERS.submit()" class="btn btn-lg btn-primary btn-block" id="btnlogin">登陆</button></div>
+     <div class="form-group"><img src="temp/1.png"></div>
 
 	<!--   <p class="mt-5 mb-3 text-muted">&copy; 2021</p> -->
 	</form>
@@ -70,9 +94,6 @@ USERS.submit = function() {
 	USERS.userform.action="../server/users.class.php?name=" + USERS.name;	
 	USERS.userform.submit(); 
 }
-
-
-
 
 </script>
 

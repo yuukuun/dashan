@@ -17,7 +17,7 @@ class Users {
 
 
   //////// 登陆  ////////
-  public function login($username,$password){
+  public function login($username,$password,$imgcode){
     $username = $this->mysqlcon->real_escape_string($username);
     // $mdpassword = md5($password);
     $password = $this->mysqlcon->real_escape_string($password);
@@ -26,30 +26,18 @@ class Users {
       $res = $this->mysqlcon->query($sql);
       $uid = $res->fetch_assoc();
       //如果登陆成功就用户名和密码保存在$_SESSION
-      if ($uid) {
+      if ($uid && $_SESSION['captch'] == $imgcode) {
           $_SESSION['username'] = $username;
           $_SESSION['password'] = $password;
       //如果失败跳转登陆界面 提示
       }else{
-          $_SESSION['mess'] = "验证出错！";
+          $_SESSION['mess'] = "登陆出错！";
           //跳转
           header("location: ../client/sign.php"); 
       }
     //返回bool
     return $uid;
   }
-
-  //////// 后台获取数据////////
-  // public function admin(){
-  //   //根据用户查出所有文章
-  //   $sql = "select tid,ttit,tcont,tprivate from t_txt"; 
-  //   $res = $this->mysqlcon->query($sql);  
-  //   while($row = $res->fetch_assoc()){
-  //       $this->arr[] = $row;
-  //     }
-  //     //后台输用户名
-  //     echo json_encode($this->arr,JSON_UNESCAPED_UNICODE);
-  // }
 
 
 
@@ -155,43 +143,36 @@ ob_start();
 if( $_GET["name"] == "login" && isset($_POST["username"]) && isset($_POST["password"]) ){
    //判断是否验证成功
     $_POST["password"] = md5($_POST["password"]);
-   if ($users->login( $_POST["username"] , $_POST["password"] )) {
+   // if ($users->login( $_POST["username"] , $_POST["password"] )) {
+   if ($users->login( $_POST["username"] , $_POST["password"] , $_POST["imgcode"] )) {
       //登陆成功跳转主页
       header("location: ../index.php");
    }
 
 
-//////// 后台 ////////   http://localhost/server/users.class.php?name=admin  http://geqi.ga/server/users.class.php?name=admin
-// }elseif( isset($_GET["name"]) && $_GET["name"] == "admin" )){  
-//    if ( $users->login( $_SESSION['username'] , $_SESSION['password'] )) {
-//      $users->admin(); 
-//    }
-
-
 //////// 更新文章 ////////      
-  // }elseif( isset($_GET["tid"]) ){     
-  }elseif( $_GET["name"] == "update" && is_numeric($_GET["id"]) ){     
-   if ( $users->login( $_SESSION['username'] , $_SESSION['password'] )) {
+  }elseif( $_GET["name"] == "update" && is_numeric($_GET["id"])  ){   
+    if ( $users->login($_SESSION['username'] , $_SESSION['password'] , $_SESSION['captch']) ) {
      $users->update($_GET["id"], $_POST["title"], $_POST["texts"]); 
    }
 
 //////// 写入文章 更新 记事本////////   
-}elseif( isset($_GET["name"]) && $_GET["name"] == "insert" ){  
-   if ( $users->login( $_SESSION['username'] , $_SESSION['password'] )) {
+}elseif( isset($_GET["name"]) && $_GET["name"] == "insert"  ){
+    if ( $users->login($_SESSION['username'] , $_SESSION['password'] , $_SESSION['captch']) ) {
      $users->ins_row(); 
    }
 
 
 
 //////// 删除 ok////////   
-}elseif( $_GET["name"] == "delete" && is_numeric($_GET["id"]) ){     
-   if ( $users->login( $_SESSION['username'] , $_SESSION['password'] )) {
+}elseif( $_GET["name"] == "delete" && is_numeric($_GET["id"])  ){  
+    if ( $users->login($_SESSION['username'] , $_SESSION['password'] , $_SESSION['captch']) ) {
      $users->delete(($_GET["id"])); 
    }   
 
 //////// 隐藏 ok////////   
-}elseif( $_GET["name"] == "hidden" && is_numeric($_GET["id"])  && is_numeric($_GET["pid"]) ){     
-   if ( $users->login( $_SESSION['username'] , $_SESSION['password'] )) {
+}elseif( $_GET["name"] == "hidden" && is_numeric($_GET["id"])  && is_numeric($_GET["pid"]) ){
+    if ( $users->login($_SESSION['username'] , $_SESSION['password'] , $_SESSION['captch']) ) {
      $users->hidden($_GET["id"],$_GET["pid"]); 
    }   
 
