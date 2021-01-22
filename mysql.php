@@ -2,6 +2,13 @@
 //如果打开 不显示错误
 // error_reporting(E_ALL^E_NOTICE^E_WARNING);
 
+//jsdelivr url
+// $jsdelivr_url = "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/";
+// function jsdelivr(){
+//   return "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.0/";
+// }
+
+
 //链接mysql函数
 function mysql_con(){
     //链接数据
