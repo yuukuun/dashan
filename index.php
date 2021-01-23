@@ -4,7 +4,7 @@ session_start();
 require_once "client/main.dilog.php";	//弹框文件
 require_once "client/html.header.html";	//头部静态文件
 require_once "mysql.php";	//数据库
-// echo md5("admin");
+
 ?>
 
 
@@ -28,7 +28,7 @@ require_once "mysql.php";	//数据库
 		//登陆用户的显示导航按钮
 		}else{
 		 	echo "<a onclick=\"DILOG.getadmin()\" class=\"nav-link\" href=\"admin.php\" target=\"_blank\"><div>&nbsp;后台</div></a>";
-		 	echo  "<a onclick=\"DILOG.note()\" class=\"nav-link\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >记事</div></a>";
+		 	echo  "<a onclick=\"DILOG.note()\" class=\"nav-link\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >记事本</div></a>";
 		 	echo  "<a onclick=\"DILOG.instxt()\" class=\"nav-link\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >写文章</div></a>";
 		}
 	?>
@@ -36,10 +36,6 @@ require_once "mysql.php";	//数据库
 	<a onclick="ftexttit()" class="nav-link" href="#">文章</a>
     <a onclick="fmusictit()" class="nav-link" href="#">音频</a>
     <a onclick="fvideotit()" class="nav-link" href="#">视频</a>
-
-
-    
-
 
  </nav></div><main role="main" class="container">
 
@@ -53,7 +49,7 @@ function texts(){
 	//数据库调用
 	$mysql = mysql_con();
 	//访问mysql
-	$sql = "select * from t_txt";  
+	$sql = "select tid,ttit,tprivate from t_txt";  
 	$res = $mysql->query($sql);	
 	while($row = $res->fetch_assoc()){
 		$arr[] = $row;
@@ -81,21 +77,6 @@ function foreachs($dir){
 			//目录名子标题
 			$arr = explode('/', $value);
 			$btit = end($arr);
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
-			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
 			echo "<div class=\"btit col-12 col-md-12\">".$btit."</div>";
 			//如果$value是目录的化调用本身
 			foreachs($value);

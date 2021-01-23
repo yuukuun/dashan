@@ -128,6 +128,21 @@ class Users {
        echo json_encode($status, JSON_UNESCAPED_UNICODE);
   }
 
+    //////// 分组 ////////
+  public function group($id,$group){
+
+      $group = $this->mysqlcon->real_escape_string($_GET["group"]);
+      // $id = $_GET["id"];
+      $sql = "update t_txt set uid='1',tgroup='$group' where tid = '$id'";
+       $res = $this->mysqlcon->query($sql); 
+            if ($res === TRUE) {
+              $status = $_SESSION['num']." 组成功！";
+            }else{
+              $status = "组出错！！！";
+            }
+
+      echo json_encode($status, JSON_UNESCAPED_UNICODE);
+    }
 
 }
 
@@ -175,6 +190,13 @@ if( $_GET["name"] == "login" && isset($_POST["username"]) && isset($_POST["passw
     if ( $users->login($_SESSION['username'] , $_SESSION['password'] , $_SESSION['captch']) ) {
      $users->hidden($_GET["id"],$_GET["pid"]); 
    }   
+
+//////// 分组 ////////   
+}elseif( $_GET["name"] == "group" ){
+    if ( $users->login($_SESSION['username'] , $_SESSION['password'] , $_SESSION['captch']) ) {
+     $users->group( $_GET["id"] , $_GET["group"] ); 
+   }   
+
 
 //////// 出错！ ////////
 }else{

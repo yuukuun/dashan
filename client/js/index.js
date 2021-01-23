@@ -33,7 +33,7 @@ DILOG.ids = document.getElementById("ids");     //input id 文章id
 DILOG.title = document.getElementById("title");  //input title  文章标题
 DILOG.texts = document.getElementById("texts"); //input texts 文章内容
 //按钮
-DILOG.btnbc = document.getElementById("btnbc"); //保存按钮
+//DILOG.btnbc = document.getElementById("btnbc"); //保存按钮
 DILOG.btnxg = document.getElementById("btnxg"); //修改按钮
 DILOG.btnyl = document.getElementById("btnyl"); //预览按钮
 DILOG.btnbj = document.getElementById("btnbj"); //编辑按钮
@@ -119,7 +119,7 @@ DILOG.note = function() {
   DILOG.btnbj.style.display = "block"; 
   DILOG.btnxg.style.display = "block"; 
   //按钮关闭
-  DILOG.btnbc.style.display = "none"; 
+  //DILOG.btnbc.style.display = "none"; 
   // DILOG.btnht.style.display = "none";    
 }
 
@@ -134,7 +134,7 @@ DILOG.instxt = function() {
     DILOG.btnbj.style.display = "block"; 
     DILOG.btnxg.style.display = "block"; 
     //按钮关闭
-    DILOG.btnbc.style.display = "none"; 
+    //DILOG.btnbc.style.display = "none"; 
     // DILOG.btnht.style.display = "none"; 
     //
     DILOG.title.style.display = "block";
@@ -169,7 +169,7 @@ DILOG.showtxt = function(id) {
   DILOG.btnbj.style.display = "block"; 
   DILOG.btnxg.style.display = "block"; 
   //按钮关闭
-  DILOG.btnbc.style.display = "none";   
+  //DILOG.btnbc.style.display = "none";   
 }
 
 //////编辑//////
@@ -185,7 +185,7 @@ DILOG.edittxt = function() {
   DILOG.btnbj.style.display = "block"; 
   DILOG.btnxg.style.display = "block"; 
   //按钮关闭
-  DILOG.btnbc.style.display = "none"; 
+  //DILOG.btnbc.style.display = "none"; 
 }
 
 //////预览//////
@@ -198,7 +198,7 @@ DILOG.preview = function() {
   DILOG.btnbj.style.display = "block"; 
   DILOG.btnxg.style.display = "block"; 
   //按钮关闭
-  DILOG.btnbc.style.display = "none"; 
+  //DILOG.btnbc.style.display = "none"; 
   //json字符串 调用DILOG.page()函数 
   //let str = '{tid: "578", ttit: "++标题++wqewqe", tcont: "++代码语言写在<pre><code>my code</code></pre>标签内++"}'; /js的
   //let str = '{tid: "", ttit: "'+ DILOG.title.value  +'", tcont: "'+ DILOG.texts.value +'"}';
@@ -302,8 +302,6 @@ function vidstops(){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////// 音频 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// function audio(path) {
 XPlAYER.audio = function(path) {
   //关闭视频
   document.getElementById("newmove").style.display = "none"; 
@@ -314,6 +312,7 @@ XPlAYER.audio = function(path) {
   //音乐
   const ap = new APlayer({
     container: document.getElementById('aplayer'),
+    fixed: true,
     mutex: true, //防止重复播放
     autoplay: true, //自动播放
     loop: 'all',  //循环

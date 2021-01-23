@@ -6,6 +6,11 @@
     float: right;
     margin: 6px;
   }
+    .btnselect{
+/*    float: top;*/
+    float: right;
+/*    margin: 6px;*/
+  }
   .modal-content {
     padding: 1%;
   }
@@ -47,15 +52,22 @@
                // echo "<button id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\">删除</button> ";
                 }    
             ?>
-            <span id="btnbj"></span>
-            <span id="btnyl"></span>
-            <span id="btnxg"></span>
-        
-            <button onclick="DILOG.submit()" style="" id="btnbc" type="button" class="btn btn-primary btn-sm">保存</button> 
-            
+            <span id="btnbj"></span><span id="btnyl"></span><span id="btnxg"></span>
+          <!--   <button onclick="DILOG.submit()" style="" id="btnbc" type="button" class="btn btn-primary btn-sm">保存</button>  -->
+ <!----------------------------------------------- 分组 ----------------------------------------------------->
+       
+         <!--     <span class=" btnselect secondary">
+              <form class="form-inline"><select class="custom-select my-1 mr-sm-2" id="sad">
+                <option value="3">1</option>
+                <option value="3">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+              </select></form>
+            </span> 
+ -->
 
+            <!-- <button onclick="DILOG.submit()" style="" id="btnbc" type="button" class="btn btn-primary btn-sm">保存</button>  -->
          <!--    <button onclick="DILOG.getadmin()" id="btnht" type="button" class="btn btn-danger btn-sm">后台</button>  -->
-
 
             <!--  文章显示 -->
             <!-- <div class="form-group"></div>

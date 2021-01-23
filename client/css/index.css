@@ -3,14 +3,12 @@
 /***************************************************************************************************/
 .container {
     position: relative;
-    top: 69px;
+    top: 30px;
   }
   .nav-scroller a{
     color: gray;
   }
   .nav-scroller a:hover {  color: #fff; }
-
-
 
 .btit{
     text-align: left;
@@ -18,7 +16,7 @@
     background-color: #ccccca;
     color: black;
     text-align: center;
-    border-top: 20px solid #f8f9fa;
+/*    border-top: 20px solid #f8f9fa;*/
 }
 .tit{
       float: left; 
@@ -159,7 +157,7 @@
 /***************************************************************************************************/
 /******************************************音频播放器样式********************************************/
 /***************************************************************************************************/
-#aplayer{
+#aplayer_teml{
       position: fixed;cursor: pointer;
       left: 0.1%; bottom: 1%;
       /*width: 370px; */
