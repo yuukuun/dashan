@@ -312,12 +312,12 @@ XPlAYER.audio = function(path) {
   //音乐
   const ap = new APlayer({
     container: document.getElementById('aplayer'),
-    fixed: true,
+    //fixed: true,
     mutex: true, //防止重复播放
     autoplay: true, //自动播放
     loop: 'all',  //循环
     audio: {
-        name: path,
+        name: path + path + path,
         url: path,
       }
   });

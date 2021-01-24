@@ -19,18 +19,18 @@
 /*    border-top: 20px solid #f8f9fa;*/
 }
 .tit{
-      float: left; 
+     text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      /*float: left; */
      /* position: absolute;*/
       display:inline;
       font: 16px/28px arial,sans-serif; 
       color: #022;
      /* height: 50px;*/
       background-color: #e8e7e3;
-      border: 1px solid #f8f9fa;
-      text-align: left;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      border: 1px solid #f8f9fa;  
 }
 .tit:hover {    
       background-color:  #ccccca; 
@@ -157,17 +157,33 @@
 /***************************************************************************************************/
 /******************************************音频播放器样式********************************************/
 /***************************************************************************************************/
-#aplayer_teml{
+#aplayer_t{
       position: fixed;cursor: pointer;
-      left: 0.1%; bottom: 1%;
+      bottom: 25px;
+      left: 0.1%; 
+      width: 100%; 
       /*width: 370px; */
       height: 14%;
 
       border:1px solid  #ccccca;
-      border-radius: 5px;
-      padding-top: 25px;
+/*      border-radius: 5px;
+      padding-top: 25px;*/
 
       display: none;
       z-index: 1500px;
-      box-shadow: 4px 4px 7px #DCDCDC; 
+      box-shadow: 4px 4px 7px #DCDCDC;   
+}
+
+
+
+.pos {
+/*   display: none;*/
+/*  background-color: red;*/
+    position: fixed;cursor: pointer;
+    height: 68px;
+    width: 100%;
+/*  width: 570px; */
+    bottom: 0px; 
+    left: 0px;
+    z-index: 1500px;
 }

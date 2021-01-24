@@ -87,19 +87,19 @@ function foreachs($dir){
 			//获取标题
 			$arr = explode('/', $value);	//'/'分数组
 			$tit = end($arr);				//数组最后一个元素
-			$tit = strstr($tit,'.',true);	//'.'分割
-			$jsdelivr_url = "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.01/";
+			$tit = strstr($tit,'.',true);	//'.'分割 
+			//
+			//$jsdelivr_url = "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.01/";
 			//根据后缀是不是音乐文件
 			if ( $ext == ".flac" || $ext == ".mp3" || $ext == ".wav" ) {
 				//输出音频
-				 // echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$value."')\" >".$tit."</div></a>";
-				//echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.01/".$value."')\" >".$tit."</div></a>";
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
+				echo "<a href=\"#m\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
+				// echo "<a href=\"#m\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$jsdelivr_url."music/轻音乐/吉他轻音乐.mp3')\" >".$tit."</div></a>";
 		
-			}else{
+			}elseif( $ext == ".mp4" || $ext == ".mkv"  ){
 				//输出视频
-				// echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$value."')\" >".$tit."</div></a>";
-				echo "<a href=\"#\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
+				echo "<a href=\"#v\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
+				// echo "<a href=\"#v\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$jsdelivr_url."video/动物/Iguana chased by killer snakes.mp4')\" >".$tit."</div></a>";
 			}
 		}
 	}

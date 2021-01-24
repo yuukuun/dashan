@@ -58,8 +58,8 @@ $_SESSION['captch'] = $captch->getText(); //小写
           echo "请登陆！"; 
        }
       ?></h4>
-	  <div class="form-group"><input type="text" id="username" name="username" class="form-control" placeholder="用户名：admin" required autofocus></div>
-	  <div class="form-group"><input type="password"  id="password" name="password" class="form-control" placeholder="密码：admin" required></div>
+	  <div class="form-group"><input type="text" id="username" name="username" class="form-control" placeholder="用户名" required autofocus></div>
+	  <div class="form-group"><input type="password"  id="password" name="password" class="form-control" placeholder="密码" required></div>
     <div class="form-group"><input type="text"  id="imgcode" name="imgcode" class="form-control" placeholder="验证码" required></div>
 
 
