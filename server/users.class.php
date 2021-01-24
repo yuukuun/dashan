@@ -73,11 +73,19 @@ class Users {
       //特殊字符处理
       $title = $this->mysqlcon->real_escape_string($ftitle);
       $texts = $this->mysqlcon->real_escape_string($ftexts);
-      //  if
+      //标题和分组分开
+      if ( strpos($title, '|') == true ) {
+      	$arr = explode('|', $title);
+      	$title = reset($arr);	//数组第一个元素
+      	$tgroup = end($arr);	//数组最后一个元素
+      }else{
+      	$tgroup = '默认';
+      }
+      
         if ( $tid == 1 ) {
             $sql = "update t_txt set uid='1',tcont='$texts' where tid = '$tid'";
         }else{
-            $sql = "update t_txt set uid='1',ttit='$title',tcont='$texts' where tid = '$tid'";
+            $sql = "update t_txt set uid='1',ttit='$title',tgroup='$tgroup',tcont='$texts' where tid = '$tid'";
         }
           $res = $this->mysqlcon->query($sql); 
             if ($res === TRUE) {

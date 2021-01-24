@@ -9,7 +9,7 @@ class TxtPage {
       //mysql 链接
       $this->mysqlcon = mysql_con();
       //查询数据库
-      $sql = "select tid,ttit,tcont from t_txt where tid = '$tid'";  
+      $sql = "select tid,tgroup,ttit,tcont from t_txt where tid = '$tid'";  
       $res = $this->mysqlcon->query($sql);  
         while($row = $res->fetch_assoc()){
           $arr = $row;

@@ -70,7 +70,7 @@ DILOG.gets = function(url,huidiao) {
 	               		 DILOG.ids.value = json.tid; 
 	               }
 	               if (json.ttit != "") {
-	               		 DILOG.title.value = json.ttit; 
+	               		 DILOG.title.value = json.ttit + '|' + json.tgroup; 
 	               }
 	               if (json.tcont != "") {
 	               		 DILOG.texts.value = json.tcont; 
@@ -96,7 +96,7 @@ DILOG.page = function(json) {
     json.tcont = json.tcont.replaceAll("&lt;/code&gt;&lt;/pre&gt;","</code></pre>");
 
     // 发送html文件到readiframe 样式文件在 index.css 和 index.js 内
-    DILOG.readiframe.contentWindow.document.body.innerHTML = DILOG.htmkhead + json.ttit + '<hr>' + json.tcont + DILOG.htmkfoot;      
+    DILOG.readiframe.contentWindow.document.body.innerHTML = DILOG.htmkhead + json.ttit + '|' + json.tgroup + '<hr>' + json.tcont + DILOG.htmkfoot;      
     // DILOG.readiframe.contentWindow.document.body.innerHTML = DILOG.js;      
 }
 
