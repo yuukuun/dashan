@@ -4,8 +4,8 @@ session_start();
 require_once "client/main.dilog.php";	//弹框文件
 require_once "client/html.header.html";	//头部静态文件
 require_once "mysql.php";	//数据库
-
 ?>
+
 
 
 <!----------------------------------------------- 导航部分 ----------------------------------------------------->
@@ -30,9 +30,10 @@ require_once "mysql.php";	//数据库
 		 	echo "<a onclick=\"DILOG.getadmin()\" class=\"nav-link\" href=\"admin.php\" target=\"_blank\"><div>&nbsp;后台</div></a>";
 		 	echo  "<a onclick=\"DILOG.note()\" class=\"nav-link\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >记事本</div></a>";
 		 	echo  "<a onclick=\"DILOG.instxt()\" class=\"nav-link\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >写文章</div></a>";
+		 	echo  "<a onclick=\"DILOG.ytb()\" class=\"nav-link\" href=\"#\"><div data-target=\"#write\" data-toggle=\"modal\">YTB</div></a>";
 		}
 	?>
-	<a class="nav-link" href="#">|</a>
+	<!-- <a onclick="DILOG.ytb()" class="nav-link" href="#"><div data-target="#write" data-toggle="modal">YTB</div></a> -->
 	<a onclick="ftexttit()" class="nav-link" href="#">文章</a>
     <a onclick="fmusictit()" class="nav-link" href="#">音频</a>
     <a onclick="fvideotit()" class="nav-link" href="#">视频</a>
@@ -58,11 +59,13 @@ function texts(){
 	for ($i=0; $i < count($arr); $i++) { 
 		//如果是登陆用户所有文章显示
 		if ( isset($_SESSION['username']) && isset($_SESSION['password']) && $arr[$i]["tid"] != 1 ) {
-			echo  "<a onclick=\"DILOG.showtxt(".$arr[$i]["tid"].")\" class=\"tit col-12 col-md-6\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >".$arr[$i]["ttit"]."</div> </a>";
+			// echo  "<a class=\"tit col-12 col-md-6\" href=\"server/gettxt.php?id=".$arr[$i]["tid"]."\"  target=\"_blank\"> ".$arr[$i]["ttit"]." </a>";
+			echo  "<a onclick=\"DILOG.showtxt(".$arr[$i]["tid"].")\" class=\"tit col-12 col-md-6\" href=\"#\"> <div data-target=\"#write\" data-toggle=\"modal\" >".$arr[$i]["ttit"]."</div> </a>";
 		//如果是访客 公开的文章显示 t_txt表的tprivate字段 1是公开 0是隐藏
 		}else{
 			if ($arr[$i]["tid"] != "1" && $arr[$i]["tprivate"] == "1") {
-			echo  "<a onclick=\"DILOG.showtxt(".$arr[$i]["tid"].")\" class=\"tit col-12 col-md-6\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >".$arr[$i]["ttit"]."</div> </a>";
+			// echo  "<a class=\"tit col-12 col-md-6\" href=\"server/gettxt.php?id=".$arr[$i]["tid"]."\"  target=\"_blank\"> ".$arr[$i]["ttit"]." </a>";
+				echo  "<a onclick=\"DILOG.showtxt(".$arr[$i]["tid"].")\" class=\"tit col-12 col-md-6\" href=\"#\" > <div data-target=\"#write\" data-toggle=\"modal\" >".$arr[$i]["ttit"]."</div> </a>";
 			}
 		}
 		
@@ -91,14 +94,16 @@ function foreachs($dir){
 			//
 			//$jsdelivr_url = "https://cdn.jsdelivr.net/gh/yuukuun/dashan@1.01/";
 			//根据后缀是不是音乐文件
-			if ( $ext == ".flac" || $ext == ".mp3" || $ext == ".wav" ) {
+			if ( $ext == ".flac" || $ext == ".mp3" || $ext == ".wav" || $ext == ".m4a" ) {
 				//输出音频
-				echo "<a href=\"#m\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
+				//echo "<a href=\"#m\" class=\"tit col-11 col-md-5\" ><div onclick=\"XPlAYER.audio('".$jsdelivr_url.$value."')\" >".$tit."</div></a><a download class=\"tit\" href=\"".$jsdelivr_url.$value."\">-下-</a>";
+				echo "<div class=\"tit col-12 col-md-4\"><a onclick=\"XPlAYER.audio('".$jsdelivr_url.$value."')\" href=\"#m\">".$tit."</a><a style=\"color: #e8e7e3; float: top; float: right; \" download href=\"".$jsdelivr_url.$value."\">下载</a></div>";
 				// echo "<a href=\"#m\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.audio('".$jsdelivr_url."music/轻音乐/吉他轻音乐.mp3')\" >".$tit."</div></a>";
 		
-			}elseif( $ext == ".mp4" || $ext == ".mkv"  ){
+			}elseif( $ext == ".mp4" ){
 				//输出视频
-				echo "<a href=\"#v\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
+				echo "<div class=\"tit col-12 col-md-4\"><a onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" href=\"#m\">".$tit."</a><a  style=\"color: #e8e7e3; float: top; float: right;\" download href=\"".$jsdelivr_url.$value."\">下载</a></div>";
+				//echo "<a href=\"#v\" class=\"tit col-12 col-md-6\" ><div onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" >".$tit."</div></a>";
 				// echo "<a href=\"#v\" class=\"tit col-12 col-md-3\" ><div onclick=\"XPlAYER.videos('".$jsdelivr_url."video/动物/Iguana chased by killer snakes.mp4')\" >".$tit."</div></a>";
 			}
 		}

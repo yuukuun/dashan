@@ -46,7 +46,10 @@ $navs=<<<EOF
 <a class="nav-link" href="index.php">主页</a>
 <a onclick="DILOG.note()" class="nav-link" href="#" ><div data-target="#write" data-toggle="modal" >记事本</div></a>
 <a onclick="DILOG.instxt()" class="nav-link" href="#" ><div data-target="#write" data-toggle="modal" >写文章</div></a>
-<a class="nav-link" href="#">|</a>
+<a onclick="DILOG.ytb()" class="nav-link" href="#"><div data-target="#write" data-toggle="modal">YTB</div></a>
+
+
+
 EOF;
 echo $navs; 
 		for ($i=0; $i < count($tgroup); $i++) { 

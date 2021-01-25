@@ -18,17 +18,19 @@ class Users {
 
   //////// 登陆  ////////
   public function login($username,$password,$imgcode){
+    $status = "";
     $username = $this->mysqlcon->real_escape_string($username);
     // $mdpassword = md5($password);
     $password = $this->mysqlcon->real_escape_string($password);
       //条件查询时候用户名和密码是否存在
       $sql = "select uid from t_user where username='$username' and passwd='$password'"; 
       $res = $this->mysqlcon->query($sql);
-      $uid = $res->fetch_assoc();
+      // $uid = $res->fetch_assoc();
       //如果登陆成功就用户名和密码保存在$_SESSION
-      if ($uid && $_SESSION['captch'] == $imgcode) {
+      if ( $_SESSION['captch'] == $imgcode && $res->fetch_assoc() ) {
           $_SESSION['username'] = $username;
           $_SESSION['password'] = $password;
+          $status = 1;
       //如果失败跳转登陆界面 提示
       }else{
           $_SESSION['mess'] = "登陆出错！";
@@ -36,7 +38,8 @@ class Users {
           header("location: ../client/sign.php"); 
       }
     //返回bool
-    return $uid;
+      // var_dump($uid);
+    return $status;
   }
 
 
@@ -44,12 +47,12 @@ class Users {
   //////// 插入初始化ok ////////
    public function ins_row(){
       $_SESSION['num'] = 0;
-      $sql = "select * from t_txt where ttit='++标题++' and tcont='++代码语言写在<pre><code>my code</code></pre>标签内++' and uid='1'"; 
+      $sql = "select * from t_txt where ttit='++标题++' and tcont='+++<pre><code>代码写这里</code></pre>+++' and uid='1'"; 
       $sres = $this->mysqlcon->query($sql);
       $arr = $sres->fetch_assoc();
       //如果文章不存在
       if ($arr == "") {
-            $ins = "insert into t_txt set uid='1',ttit='++标题++',tcont='++代码语言写在<pre><code>my code</code></pre>标签内++'";
+            $ins = "insert into t_txt set uid='1',ttit='++标题++',tcont='+++<pre><code>代码写这里</code></pre>+++'";
             // $insres = $this->mysqlcon->query($ins);
             if ($this->mysqlcon->query($ins)) {
                 $inse = "初始化成功！";
@@ -63,8 +66,8 @@ class Users {
             $status = "存在！";
           }
 
-      $arr["status"] = $status;
-      $arr["inse"] = $inse;
+      // $arr["status"] = $status;
+      // $arr["inse"] = $inse;
       echo json_encode($arr,JSON_UNESCAPED_UNICODE);
   }
 
@@ -73,6 +76,8 @@ class Users {
       //特殊字符处理
       $title = $this->mysqlcon->real_escape_string($ftitle);
       $texts = $this->mysqlcon->real_escape_string($ftexts);
+      //去掉空格
+      $title = str_replace(' ', '',  $title);
       //标题和分组分开
       if ( strpos($title, '|') == true ) {
       	$arr = explode('|', $title);
@@ -152,6 +157,21 @@ class Users {
       echo json_encode($status, JSON_UNESCAPED_UNICODE);
     }
 
+   //////// 分组 ////////
+  public function ytb(){
+    $id = $_POST["texts"];
+
+    $url = system("
+#proxy='--proxy socks5://127.0.0.1:1080' >>/dev/null -g 
+#>>/dev/null
+num=\$(/usr/local/bin/youtube-dl -F \$proxy $id | grep 'audio' | head -n 1 | awk '{print \$1}') 
+/usr/local/bin/youtube-dl -f \$num \$proxy $id  -o ../music/ytb/$(date +%y%m%d%H%M).m4a 
+");
+      echo json_encode($url, JSON_UNESCAPED_UNICODE);
+    }
+
+
+
 }
 
 //////////////////////////////////////////////////// 对象和判断 ////////////////////////////////////////////////////
@@ -166,7 +186,7 @@ ob_start();
 if( $_GET["name"] == "login" && isset($_POST["username"]) && isset($_POST["password"]) ){
    //判断是否验证成功
     $_POST["password"] = md5($_POST["password"]);
-   // if ($users->login( $_POST["username"] , $_POST["password"] )) {
+
    if ($users->login( $_POST["username"] , $_POST["password"] , $_POST["imgcode"] )) {
       //登陆成功跳转主页
       header("location: ../index.php");
@@ -205,6 +225,11 @@ if( $_GET["name"] == "login" && isset($_POST["username"]) && isset($_POST["passw
      $users->group( $_GET["id"] , $_GET["group"] ); 
    }   
 
+//////// 分组 ////////   
+}elseif( $_GET["name"] == "ytb" ){
+    if ( $users->login($_SESSION['username'] , $_SESSION['password'] , $_SESSION['captch']) ) {
+     $users->ytb(); 
+   }  
 
 //////// 出错！ ////////
 }else{

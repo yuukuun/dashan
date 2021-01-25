@@ -24,6 +24,14 @@
     background-color: gray;
   }
 
+/*.modal-dialog {
+  max-width: max-content;
+}
+
+.modal-content {
+  width: auto;
+}
+*/
 </style>
 
 
@@ -31,7 +39,7 @@
 <!-------------------------------------------------- 文本编辑------------------------------------------------------>
 <!----------------------------------------------------------------------------------------------------------------->
 <div class="modal fade" id="write" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div id="dialogdx" class="modal-dialog modal-xl" > <!-- modal-lg modal-sm -->
+  <div id="dialogdx" class="modal-dialog modal-xl" > <!--modal-xl  modal-lg modal-sm -->
     <div class="modal-content">
     <!--   <div class="modal-header">    </div> -->
        <!--  <div class="modal-body"> </div>   -->
@@ -39,9 +47,11 @@
         
           <div > 
            
-            <iframe class="col-12 col-md-5" id="temp" name="temp" frameborder="no" marginwidth="0" marginheight="0" scrolling="yes"></iframe>
-  
+            
+            <iframe class="col-12 col-md-5" id="temp" name="temp" frameborder="no" marginwidth="0" marginheight="0" scrolling="yes"></iframe> 
             <button type="button" id="btngb"  class="btn btn-danger btn-sm" data-dismiss="modal">关闭</button> 
+           
+        
             
               
           <!--     如果登陆成功显示编辑按钮 -->
@@ -52,7 +62,7 @@
                // echo "<button id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\">删除</button> ";
                 }    
             ?>
-            <span id="btnbj"></span><span id="btnyl"></span><span id="btnxg"></span>
+            <span id="btnbj"></span><span id="btnyl"></span><span id="btnxg"></span><span id="btngb"></span>
           <!--   <button onclick="DILOG.submit()" style="" id="btnbc" type="button" class="btn btn-primary btn-sm">保存</button>  -->
  <!----------------------------------------------- 分组 ----------------------------------------------------->
        
@@ -90,7 +100,7 @@
          
    
            <?php  if ( isset($_SESSION['username']) && isset($_SESSION['password']) ) {    
-               echo "<div><button onclick=\"DILOG.delete()\" id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\"  data-dismiss=\"modal\">删除</button></div>";
+               echo "<div><button onclick=\"DILOG.delete()\" id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\"  data-dismiss=\"modal\">删除文章</button></div>";
               }    
             ?>
     </div>

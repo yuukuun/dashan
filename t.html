@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Clipboard 仿CSDN代码复制功能</title>
+    <!--<author>Tuz</author>-->
+    <!--<time>2019-1-22 15:18:01</time>-->
+ 
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/default.min.css">
+          <style type="text/css">
+          	
+.codecopy{
+    position: relative;
+}
+/*pre标签悬浮 复制按钮出现*/
+.codecopy:hover .codecopy-btn{
+    display: block;
+}
+/*复制按钮样式*/
+.codecopy-btn{
+    display: none;
+    position: absolute;
+    right: 4px;
+    top: 22px;
+    font-size: 12px;
+    color: #4d4d4d;
+    background-color: white;
+    padding: 2px 8px;
+    margin: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
+}
+          </style>
+ 
+</head>
+<body>
+<pre class="codecopy">
+            <code>&lt;h1&gt;Example heading &lt;/h1&gt;
+&lt;h2&gt;Example heading &lt;/h2&gt;
+&lt;h3&gt;Example heading &lt;/h3&gt;
+&lt;h4&gt;Example heading &lt;/h4&gt;
+&lt;h5&gt;Example heading &lt;/h5&gt;
+&lt;h6&gt;Example heading &lt;/h6&gt;</code>
+        </pre>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<!-- <script type="text/javascript" src="codecopy.bundle.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script> -->
+
+<script type="text/javascript">
+	
+/*生成复制按钮*/
+//获取所有的代码区域的pre元素节点
+const codecopys = document.getElementsByClassName('codecopy');
+//遍历DOM（pre节点）节点
+for (let i = 0; i < codecopys.length; i++) {
+    //pre元素对象
+    let codecopy = codecopys[i];
+ 
+    //获取时间戳
+    let time = new Date().getTime();
+ 
+    //生成复制按钮
+    let html_temp = '<div class="codecopy-btn" data-title="复制" data-clipboard-action="copy" data-clipboard-target="#code_' + time + '"' +
+        'onclick="onC(this);" onmouseout="mOut(this)">复制</div>';
+ 
+    //找到code元素，并添加id属性，id的值和复制按钮的属性 data-clipboard-target 的值（去掉#符号后，注：data-clipboard-target的值就是元素选择器的值）是一样的
+    codecopy.firstChild.nextSibling.id = 'code_' + time;//setAttribute('id', 'code_' + time);
+ 
+    //将复制按钮追加至页面
+    let html = codecopy.innerHTML + html_temp;
+ 
+    codecopy.innerHTML = html;
+}
+/*初始化复制功能*/
+const clipboardJs = new ClipboardJS('.codecopy-btn');//注意：ClipboardJS替代了Clipboard
+ 
+/*复制成功事件*/
+clipboardJs.on('success', function (e) {
+    console.log(e);
+});
+/*复制失败事件*/
+clipboardJs.on('error', function (e) {
+    console.log(e);
+});
+ 
+/*点击事件*/
+function onC(ths) {
+    ths.innerHTML = '复制成功';
+}
+/*鼠标移出事件*/
+function mOut(ths) {
+    setTimeout(function () {
+        ths.innerHTML = '复制';
+    }, 1500);
+}
+</script>

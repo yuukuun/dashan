@@ -10,6 +10,8 @@
   }
   .nav-scroller a:hover {  color: #fff; }
 
+#downa a:hover {  color: green; }
+
 .btit{
     text-align: left;
     font: 17px/35px arial,sans-serif;
@@ -62,38 +64,6 @@
 /***************************************************************************************************/
 /******************************************文章页面样式*********************************************/
 /***************************************************************************************************/
-  .contents pre {
-    position: relative;
-    border-radius: 5px;
-    padding: 1px;
-    width: 100%;
-
-      padding: 7px;
-       border-radius: 6px;
-       font: 14px arial,sans-serif; 
-       background-color: #2E3436;
-       color: #e8e7e3;
-  
-  }
-  /*按钮控制*/
-  pre .btn-pre-copy{
-      position: absolute;
-     /* position: fixed;*/
-      top: 10px;
-      right: 15px;
-
-      font-size: 14px;
-      line-height: 1;
-      cursor: pointer;
-      color: hsla(0,0%,54.9%,.8);
-      transition: color .1s;
-     /* 按钮颜色*/
-      border-radius: 3px;
-      background-color:#fff;
-      padding: 3px;
-  }
-  textarea{ width: 100%;  }
-
       /*总体文本大小*/
       .contents {
         margin: 5px;
@@ -108,9 +78,38 @@
         white-space: -o-pre-wrap;        /* Opera 7 */
         word-wrap: break-word;           /* Internet Explorer 5.5+ */
       }
-      /*代码区域大小*/
-         /*.codecopy pre {*/
 
+
+  .contents pre {
+    position: relative;
+    border-radius: 5px;
+    padding: 1px;
+    width: 100%;
+
+      padding: 7px;
+      border-radius: 6px;
+/*      font: 14px arial,sans-serif; */
+      background-color: #2E3436;
+/*       background-color: red;*/
+      color: #e8e7e3;
+
+      word-spacing: 2px;
+      font: 15px/26px arial,sans-serif;
+
+
+  }
+
+
+
+
+  .copybtn {
+    background-color: gray;
+     /*  float: right;*/
+
+    position: absolute;
+    right: 8px;
+  /*   top: -9px;*/
+   }
 /***************************************************************************************************/
 /******************************************视频播放器样式********************************************/
 /***************************************************************************************************/
@@ -177,13 +176,18 @@
 
 
 .pos {
-/*   display: none;*/
+
+   display: none;
 /*  background-color: red;*/
     position: fixed;cursor: pointer;
-    height: 68px;
+    height: 65px;
     width: 100%;
 /*  width: 570px; */
     bottom: 0px; 
     left: 0px;
     z-index: 1500px;
+   box-shadow: 0px 0px 7px  gray;
+}
+#aplayer{
+    box-shadow: 0px 0px 7px  gray;
 }
