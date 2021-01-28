@@ -95,9 +95,9 @@ class Users {
           $res = $this->mysqlcon->query($sql); 
             if ($res === TRUE) {
               $_SESSION['num'] = $_SESSION['num'] + 1;
-              $status = $_SESSION['num']." 次保存成功！";
+              $status = $_SESSION['num']." 次保存成功1！";
             }else{
-              $status = "保存出错！！！";
+              $status = "保存出错！";
             }
         // $arr["status"] = $status; //JSON_UNESCAPED_UNICODE - 酷极和 - 博客园
         // echo json_encode($arr, JSON_UNESCAPED_UNICODE);

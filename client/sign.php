@@ -35,7 +35,7 @@ $_SESSION['captch'] = $captch->getText(); //小写
     <meta name="generator" content="Jekyll v4.0.1">
     <title>登陆</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+<!--     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/"> -->
 
     <!-- Bootstrap core CSS -->
 <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->

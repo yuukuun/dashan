@@ -1,10 +1,16 @@
 /***************************************************************************************************/
 /******************************************标题样式*************************************************/
 /***************************************************************************************************/
-.container {
+/*.container {
     position: relative;
     top: 30px;
-  }
+  }*/
+.bg-light main {
+/*  background-color: red;*/
+  position: relative;
+  top: 70px;
+}
+
   .nav-scroller a{
     color: gray;
   }
@@ -37,6 +43,10 @@
 .tit:hover {    
       background-color:  #ccccca; 
 }
+/*.titflac {    background-color:  #D1EEEE;   }*/
+.titwav {   background-color:  #D1EEEE;  }
+.titmp3 {   background-color:  #FAF0E6;  }
+    
 
 
 .icon { 
@@ -70,6 +80,8 @@
         word-spacing: 2px;
         font: 16px/26px arial,sans-serif;
         color: #333;
+
+      /*  background-color: red;*/
         /*background-color: green;*/
         
         white-space: pre-wrap;           /* css-3 */
@@ -88,13 +100,14 @@
 
       padding: 7px;
       border-radius: 6px;
-/*      font: 14px arial,sans-serif; */
+
       background-color: #2E3436;
 /*       background-color: red;*/
       color: #e8e7e3;
 
-      word-spacing: 2px;
-      font: 15px/26px arial,sans-serif;
+      /*letter-spacing: 1px;*/
+ /*     word-spacing: 1px;*/
+      font: 14px/24px arial,sans-serif;
 
 
   }
@@ -156,38 +169,35 @@
 /***************************************************************************************************/
 /******************************************音频播放器样式********************************************/
 /***************************************************************************************************/
-#aplayer_t{
+#aplayer{
       position: fixed;cursor: pointer;
-      bottom: 25px;
-      left: 0.1%; 
+      bottom: -3px;
+      left: -5px;
       width: 100%; 
       /*width: 370px; */
-      height: 14%;
+   /*   height: 13%; */
+      height: 87px;
 
-      border:1px solid  #ccccca;
+     /* border:1px solid  #ccccca;*/
 /*      border-radius: 5px;
       padding-top: 25px;*/
 
       display: none;
       z-index: 1500px;
-      box-shadow: 4px 4px 7px #DCDCDC;   
+      box-shadow: 0px 0px 6px gray;   
 }
 
 
 
-.pos {
+.pos_t {
 
    display: none;
-/*  background-color: red;*/
     position: fixed;cursor: pointer;
-    height: 65px;
-    width: 100%;
+    height: 165px;
+    /*width: 100%;*/
 /*  width: 570px; */
     bottom: 0px; 
     left: 0px;
     z-index: 1500px;
    box-shadow: 0px 0px 7px  gray;
-}
-#aplayer{
-    box-shadow: 0px 0px 7px  gray;
 }

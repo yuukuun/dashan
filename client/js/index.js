@@ -1,24 +1,41 @@
 // 'use strict';
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////// 主页 /////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var INDEX = {};
 
-
-//显示文章
- function ftexttit(){
-    document.getElementById("texttit").style.display = "block";
-    document.getElementById("videotit").style.display = "none";
-    document.getElementById("musictit").style.display = "none";
+INDEX.hidden_nav = function(){
+    document.getElementById("video").style.display = "none";
+    document.getElementById("music").style.display = "none";
+    document.getElementById("默认").style.display = "none";
+    document.getElementById("命运").style.display = "none";
+    document.getElementById("网络").style.display = "none";
+    document.getElementById("语言").style.display = "none";
 }
 //显示视频
-function fvideotit(){
-    document.getElementById("texttit").style.display = "none";
-    document.getElementById("videotit").style.display = "block";
-    document.getElementById("musictit").style.display = "none";
+INDEX.fvideo = function(){
+    INDEX.hidden_nav();
+    document.getElementById("video").style.display = "block";
 }
 //显示音乐
-function fmusictit(){
-    document.getElementById("texttit").style.display = "none";
-    document.getElementById("videotit").style.display = "none";
-    document.getElementById("musictit").style.display = "block";
+INDEX.fmusic = function(){
+    INDEX.hidden_nav();
+    document.getElementById("music").style.display = "block";
 }
+
+//////文章分组//////
+INDEX.txtgroup = function(tgroup,arr){
+  // console.log(arr);
+  INDEX.hidden_nav();
+  let group = document.getElementById(tgroup);
+   if ( group.style.display === "block" ) {
+       group.style.display = "none";
+   }else{
+       group.style.display = "block"; 
+   }
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////// 弹框 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +54,23 @@ DILOG.btndl = document.getElementById("btndl"); //保存按钮
 DILOG.btnxg = document.getElementById("btnxg"); //修改按钮
 DILOG.btnyl = document.getElementById("btnyl"); //预览按钮
 DILOG.btnbj = document.getElementById("btnbj"); //编辑按钮
+
+
+//////窗口高度自动控制//////
+DILOG.dilog = function(id) {
+    //readiframe的高度控制
+    let winheight =  window.innerHeight; //获取浏览器窗口高度
+    winheight = Number(winheight);  //转为数子
+
+    if ( DILOG.readiframe === id ) {
+        winheight = winheight * 0.81;  //
+        DILOG.readiframe.height = winheight; //修改 
+    }  
+    if ( DILOG.texts === id ) {
+        winheight = winheight * 0.70;  //
+        DILOG.texts.style.height = winheight; //修改 
+    }
+}
 
 
 ////// html静态文件头 //////
@@ -62,7 +96,7 @@ DILOG.gets = function(url,huidiao) {
                 //转换为js
                 json = JSON.parse(json);
                 
-              
+                 
 	               if (json.tid != "") {
 	               		 DILOG.ids.value = json.tid; 
 	               }
@@ -73,7 +107,8 @@ DILOG.gets = function(url,huidiao) {
 	               		 DILOG.texts.value = json.tcont; 
 	               }
                   //回调函数
-               huidiao(json);
+                 huidiao(json);
+                
 
             }
         }
@@ -113,7 +148,8 @@ IFR.copy = function(son){
 
     
     son.parentNode.setAttribute('id', 'copytemp');
-    tagtextarea.value = copytemp.innerText;
+    //tagtextarea.value = copytemp.innerText;
+    tagtextarea.value = copytemp.innerText.replace("复制","");  //复制按钮去掉
 
     tagtextarea.select();
     if (document.execCommand('copy')) {
@@ -140,7 +176,7 @@ IFR.copy = function(son){
     DILOG.readiframe.contentWindow.document.body.innerHTML = DILOG.htmkhead + json.ttit + '|' + json.tgroup + '<hr>' + json.tcont + DILOG.htmkfoot;      
     //添加js标签
     DILOG.readiframe.contentWindow.document.body.appendChild(js); 
-
+    DILOG.dilog(DILOG.readiframe);
 }
 
 
@@ -161,6 +197,8 @@ DILOG.note = function() {
   DILOG.btnyl.style.display = "block"; 
   DILOG.btnbj.style.display = "block"; 
   DILOG.btnxg.style.display = "block";  
+  //输入框高度
+  DILOG.dilog(DILOG.texts);
 }
 
 //////写文章//////
@@ -181,7 +219,8 @@ DILOG.instxt = function() {
     DILOG.texts.value = "";
     DILOG.ids.value = "";
     DILOG.gets('server/users.class.php?name=insert', DILOG.instxtpre);
-
+  //输入框高度
+  DILOG.dilog(DILOG.texts);
 }
 
 //////youtube//////
@@ -202,6 +241,8 @@ DILOG.ytb = function() {
     DILOG.title.value = "！YouTuBe下载！";
     DILOG.texts.value = "";
     DILOG.ids.value = "";
+    //输入框高度
+    DILOG.dilog(DILOG.texts);
 }
 
 //初始化输入框
@@ -247,6 +288,8 @@ DILOG.edittxt = function() {
   DILOG.btnxg.style.display = "block"; 
   //替换特殊字符
   DILOG.texts.value = DILOG.texts.value.replaceAll(/<pre><code><button class="copybtn btn btn-default btn-sm" onclick="IFR.copy\(this\)">复制<\/button>/,'<pre><code>');  
+  //输入框高度
+  DILOG.dilog(DILOG.texts);
 }
 
 //////预览//////
@@ -354,16 +397,23 @@ XPlAYER.audio = function(path) {
   document.getElementById("videoplayerid").src = "";   //audio元素的src修改
   //显示播放
    document.getElementById("aplayer").style.display = "block"; 
+  //标题和歌词
+  lrcarr = path.split(".");
+  titarr = lrcarr[0].split("/");
+  names = titarr[2];
+  lrcs = lrcarr[0] + ".lrc";
   //音乐
   const ap = new APlayer({
     container: document.getElementById('aplayer'),
-    //fixed: true,
+    lrcType: 3, //歌词模式是 lrc文件
     mutex: true, //防止重复播放
     autoplay: true, //自动播放
     loop: 'all',  //循环
     audio: {
-        name: path + path + path,
-        url: path,
+        name: names,
+       // lrc: 'music/中文/F4-流星雨.lrc',
+        lrc: lrcs,
+        url: path
       }
   });
   bindEvent('aplayer');

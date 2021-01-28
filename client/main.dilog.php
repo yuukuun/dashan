@@ -1,10 +1,8 @@
-
-
  <style type="text/css">
   .btn{
     float: top;
     float: right;
-    margin: 6px;
+    margin: 4px;
   }
     .btnselect{
 /*    float: top;*/
@@ -16,6 +14,7 @@
   }
 
     #temp {
+    margin-top: 4px;
     width: 100%;
     height: 30px;
 /*    background-color: green;*/
@@ -24,14 +23,6 @@
     background-color: gray;
   }
 
-/*.modal-dialog {
-  max-width: max-content;
-}
-
-.modal-content {
-  width: auto;
-}
-*/
 </style>
 
 
@@ -45,23 +36,21 @@
        <!--  <div class="modal-body"> </div>   -->
         <!-- 输入框 -->
         
-          <div > 
+          <div> 
            
-            
-            <iframe class="col-12 col-md-5" id="temp" name="temp" frameborder="no" marginwidth="0" marginheight="0" scrolling="yes"></iframe> 
-            <button type="button" id="btngb"  class="btn btn-danger btn-sm" data-dismiss="modal">关闭</button> 
            
-        
-            
+        <!--     <iframe class="col-12 col-md-5" id="temp" name="temp" frameborder="no" marginwidth="0" marginheight="0" scrolling="yes"></iframe>  -->
+            <button onclick="DILOG.modfisubmit()" type="button" id="btngb"  class="btn btn-danger btn-sm" data-dismiss="modal">关闭</button> 
+           
               
           <!--     如果登陆成功显示编辑按钮 -->
             <?php  if ( isset($_SESSION['username']) && isset($_SESSION['password']) ) {    
                 echo "<button onclick=\"DILOG.preview()\" type=\"button\" id=\"btnyl\" class=\"btn btn-secondary btn-sm\">预览</button> ";
                 echo "<button onclick=\"DILOG.edittxt()\" id=\"btnbj\" type=\"button\" class=\"btn btn-secondary btn-sm\">编辑</button>";  
-                echo "<button onclick=\"DILOG.modfisubmit()\" id=\"btnxg\" type=\"button\" class=\"btn btn-primary btn-sm\">保存修改</button> ";
+                echo "<button onclick=\"DILOG.modfisubmit()\" id=\"btnxg\" type=\"button\" class=\"btn btn-primary btn-sm\">保存</button> ";
                // echo "<button id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\">删除</button> ";
-                }    
-            ?>
+                }     ?>
+           
             <span id="btnbj"></span><span id="btnyl"></span><span id="btnxg"></span><span id="btngb"></span>
           <!--   <button onclick="DILOG.submit()" style="" id="btnbc" type="button" class="btn btn-primary btn-sm">保存</button>  -->
  <!----------------------------------------------- 分组 ----------------------------------------------------->
@@ -89,20 +78,27 @@
               <div class="form-group"><input type="text" class="form-control" id="title" name="title" value="" placeholder="标题..."  style="background-color: #e8e7e3;"></div>
               
               <!-- 文本输入框 -->
-              <div class="form-group"> <textarea  class="form-control" id="texts" name="texts" placeholder="内容..." style="height: 30rem; background-color: #e8e7e3;" ></textarea></div></div>
+              <div class="form-group"> <textarea  class="form-control" id="texts" name="texts" placeholder="内容..." style="background-color: #e8e7e3;" ></textarea></div></div>
+        
             </form>
           </div>
 
+
           <!-- 主要显示显示div -->
-   <!--        <iframe id="readiframe" name="readiframe" frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes" width="100%" height="580px" ></iframe>  -->
-          <iframe id="readiframe" name="readiframe" frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes" width="100%" height="580px" onload="readiframe.focus()"></iframe> 
+<!--           <iframe id="readiframe" name="readiframe" frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes" width="100%" height="580px" onload="readiframe.focus()"></iframe>  -->
+          <iframe id="readiframe" name="readiframe" frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes" width="100%" onload="readiframe.focus()"></iframe> 
 
          
-   
-           <?php  if ( isset($_SESSION['username']) && isset($_SESSION['password']) ) {    
-               echo "<div><button onclick=\"DILOG.delete()\" id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\"  data-dismiss=\"modal\">删除文章</button></div>";
+          <div>  
+          <!-- 关闭按钮 -->
+           <?php  if ( isset($_SESSION['username']) && isset($_SESSION['password']) && $_GET['s'] != "" ) {    
+               echo "<button onclick=\"DILOG.delete()\" id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\"  data-dismiss=\"modal\">删除</button>";
               }    
             ?>
+            <!-- 返回信息框 -->
+            <iframe class="col-8 col-md-5" id="temp" name="temp" frameborder="no" marginwidth="0" marginheight="0" scrolling="yes"></iframe> 
+          </div>   
+
     </div>
   </div>
 </div>

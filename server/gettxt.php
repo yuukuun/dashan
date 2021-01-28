@@ -23,8 +23,8 @@ class TxtPage {
       $_SESSION['num'] = 0;
       //返回 json 
     return json_encode($queryarr, JSON_UNESCAPED_UNICODE);
-
   }
+  
 
 }
 $txtPage =  new TxtPage();  //创建对象
