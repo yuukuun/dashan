@@ -20,7 +20,6 @@ class Users {
   public function login($username,$password,$imgcode){
     $status = "";
     $username = $this->mysqlcon->real_escape_string($username);
-    // $mdpassword = md5($password);
     $password = $this->mysqlcon->real_escape_string($password);
       //条件查询时候用户名和密码是否存在
       $sql = "select uid from t_user where username='$username' and passwd='$password'"; 
@@ -95,9 +94,9 @@ class Users {
           $res = $this->mysqlcon->query($sql); 
             if ($res === TRUE) {
               $_SESSION['num'] = $_SESSION['num'] + 1;
-              $status = $_SESSION['num']." 次保存成功1！";
+              $status = $_SESSION['num']." 次保存文章成功！";
             }else{
-              $status = "保存出错！";
+              $status = "保存文章出错！";
             }
         // $arr["status"] = $status; //JSON_UNESCAPED_UNICODE - 酷极和 - 博客园
         // echo json_encode($arr, JSON_UNESCAPED_UNICODE);
@@ -135,7 +134,7 @@ class Users {
                    $status = "文章隐藏成功！";
                 }
             }else{
-              $status = "隐藏操作出错！";
+              $status = "隐藏出错！";
             }
         //echo $status;
        echo json_encode($status, JSON_UNESCAPED_UNICODE);

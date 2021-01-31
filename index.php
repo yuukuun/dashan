@@ -61,10 +61,10 @@ class MainDisplay {
 		echo "<header class=\"navbar navbar-expand navbar-dark fixed-top navbar-dark bg-dark\">";
 		//未登陆状态下按钮
 		if ( !isset($_SESSION['username']) && !isset($_SESSION['password']) ) {	
-			echo "<a style=\"padding-right: 10px;\" class=\"mb-2\" href=\"client/sign.php\" target=\"_blank\">@</a>";
+			echo "<a style=\"padding-right: 10px; color: #fff;\" class=\"mb-2\" href=\"client/sign.php\" target=\"_blank\">@</a>";
 		//登陆状态下的按钮
 		}else{	//登陆用户的显示导航按钮
-			echo "<a style=\"padding-right: 10px;\" class=\"mb-2\" href=\"#\" id=\"bd-versions\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">@</a>";
+			echo "<a style=\"padding-right: 10px; color: #fff;\" class=\"mb-2\" href=\"#\" id=\"bd-versions\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">@</a>";
 			echo "<div class=\"dropdown-menu dropdown-menu-md-left\" aria-labelledby=\"bd-versions\">";
 		 	echo "<a onclick=\"DILOG.instxt()\" class=\"dropdown-item\" href=\"#\"><div data-target=\"#write\" data-toggle=\"modal\" >写文章</div></a>";
 		 	echo "<div class=\"dropdown-divider\"></div><a onclick=\"DILOG.note()\" class=\"dropdown-item\" href=\"#\"><div data-target=\"#write\" data-toggle=\"modal\" >记事本</div></a>";
@@ -164,7 +164,7 @@ class MainDisplay {
 				echo "<div class=\"tit col-12 col-md-4\"><a onclick=\"XPlAYER.audio('".$jsdelivr_url.$value."')\" href=\"#m\">".$lrc.$tit."</a><a style=\"color: #e8e7e3; float: top; float: right; \" download href=\"".$jsdelivr_url.$value."\">下载</a></div>";
 			}elseif( in_array($ext, $this->videoext) ) {
 				//输出视频
-				echo "<div class=\"tit col-12 col-md-4\"><a onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" href=\"#m\">".$tit."</a><a  style=\"color: #e8e7e3; float: top; float: right;\" download href=\"".$jsdelivr_url.$value."\">下载</a></div>";
+				echo "<div class=\"tit col-12 col-md-4\"><a onclick=\"XPlAYER.videos('".$jsdelivr_url.$value."')\" href=\"#m\">".$tit."</a><a style=\"color: #e8e7e3; float: top; float: right;\" download href=\"".$jsdelivr_url.$value."\">下载</a></div>";
 			}
 		}
 	}

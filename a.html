@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1</title>
+
+</head>
+<body>
+
+
+
+<form method="post" id="mesform"><textarea  class="form-control" id="texts" name="texts" placeholder="内容..." style="background-color: #e8e7e3;" ></textarea>
+    <button onclick="ifrsubmit()" type="" name="" value="">js提交</button> </form>
+
+
+
+
+
+</body>
+</html>
+
+	<script type="text/javascript">
+mesform = document.getElementById("mesform");   //读文章框架
+//////提交文章//////
+ifrsubmit = function(){
+    mesform.action = "temp.php";  //action修改
+    mesform.target = "_blank";  //action修改
+}
+	</script>
