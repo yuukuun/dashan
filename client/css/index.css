@@ -125,10 +125,14 @@
 
 
 #mestexts {
-  background-color: red;
+  background-color: #e8e7e3;
+  margin-top:5px; 
+  margin-bottom: 4px; 
+  
+ /* background-color: red;
   margin-top:10px; 
   margin-bottom:10px; 
-  border:1px solid green;
+  border:1px solid green;*/
 
 }
 #message {

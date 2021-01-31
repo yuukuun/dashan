@@ -68,6 +68,8 @@ var DILOG = {};
 //////readiframe高度 和 texts高度控制函数//////
 DILOG.readiframe = document.getElementById("readiframe");   //读文章框架
 DILOG.tempifra = document.getElementById("temp");           //提交状态信息显示
+DILOG.mesformdiv = document.getElementById("mesformdiv");           //提交状态信息显示
+DILOG.mestexts = document.getElementById("mestexts");           //提交状态信息显示
 //输入框
 DILOG.formtxt = document.getElementById("formtxt"); //表单
 DILOG.ids = document.getElementById("ids");     //input id 文章id
@@ -87,14 +89,14 @@ IFR.htmlhead = `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta
 <link rel="stylesheet" href="client/css/index.css"></head><body class="bg-light"><main role="main"><span class="contents">`;
 //html尾
 IFR.htmlfoot = `</span></main></body></html><hr>`;
-//回复信息
-IFR.comtool = `
-<pre id="message"><code>111111111111</code></pre>
-<pre id="message"><code>2222222222222222</code></pre>
-<pre id="message"><code>3333333333333</code></pre>
-`;
-// IFR.shomcomments = function(){
 
+
+// IFR.shomcomments = function(){
+//   IFR.comtool = `
+//   <pre id="message"><code>111111111111</code></pre>
+//   <pre id="message"><code>2222222222222222</code></pre>
+//   <pre id="message"><code>3333333333333</code></pre>
+//   `;
 // }
 //创建<script>标签
 IFR.js = DILOG.readiframe.contentDocument.createElement('script');
@@ -163,21 +165,22 @@ DILOG.gets = function(url,huidiao) {
         }
 }
 
+DILOG.winheight =  window.innerHeight; //获取浏览器窗口高度
 
 //////readiframe高度 和 texts高度控制函数//////
 DILOG.dilog = function(id) {
-    let winheight =  window.innerHeight; //获取浏览器窗口高度
-    winheight = Number(winheight);  //转为数子
+    //let winheight =  window.innerHeight; //获取浏览器窗口高度
+    DILOG.winheight = Number(DILOG.winheight);  //转为数子
     //修改readiframe高度
     if ( DILOG.readiframe === id ) {
       //  winheight = winheight * 0.81;  //
-        winheight = winheight * 0.70;  //
-        DILOG.readiframe.height = winheight; //修改 
+       // DILOG.winheight = DILOG.winheight * 0.70;  //
+        DILOG.readiframe.height = DILOG.winheight * 0.70; //修改 
     }  
     //修改texts的高度
     if ( DILOG.texts === id ) {
-        winheight = winheight * 0.70;  //
-        DILOG.texts.style.height = winheight; //修改 
+      //  DILOG.winheight = DILOG.winheight * 0.70;  //
+        DILOG.texts.style.height = DILOG.winheight * 0.70; //修改 
     }
 }
 
@@ -191,11 +194,19 @@ DILOG.page = function(json) {
     json.tcont = json.tcont.replaceAll("&lt;/code&gt;&lt;/pre&gt;","</code></pre>");
     //替换代码复制
     json.tcont = json.tcont.replaceAll('<pre><code>','<pre><code><button class="copybtn btn btn-default btn-sm" onclick="copy(this)">复制</button>');
-
     //
-    IFR.comtool = `<pre id="message"><code>` + json.mtext + `</code></pre>`;
+    DILOG.mestexts.value = "";
+    //
+    IFR.mess = "";
+      for (var i = 0; i < json.mess.length; i++) {
+      // console.log(json.mess[i].mtext);
+        IFR.mess = IFR.mess + `<pre id="message"><code>` + json.mess[i].mtext + `</code></pre>`;
+       }
+
+    
+    // IFR.mess = `<pre id="message"><code>` + json.mtext + `</code></pre>`;
     // 发送html文件到readiframe 样式文件在 index.css 和 index.js 内    
-    DILOG.readiframe.contentWindow.document.body.innerHTML = IFR.htmlhead + json.ttit + '|' + json.tgroup + '<hr>' + json.tcont + IFR.htmlfoot + IFR.comtool;       
+    DILOG.readiframe.contentWindow.document.body.innerHTML = IFR.htmlhead + json.ttit + '|' + json.tgroup + '<hr>' + json.tcont + IFR.htmlfoot + IFR.mess;       
     //添加<script>标签添加到readiframe内
     DILOG.readiframe.contentWindow.document.body.appendChild(IFR.js); 
     //高度定义
@@ -293,14 +304,15 @@ DILOG.showtxt = function(id) {
   DILOG.btnyl.style.display = "block"; 
   DILOG.btnbj.style.display = "block"; 
   DILOG.btnxg.style.display = "block"; 
+
   //
-
-    DILOG.ids.value = json.tid; 
-    DILOG.title.value = json.ttit + '|' + json.tgroup; 
-    DILOG.texts.value = json.tcont; 
-
-
+    // DILOG.ids.value = json.tid; 
+    // DILOG.title.value = json.ttit + '|' + json.tgroup; 
+    // DILOG.texts.value = json.tcont; 
+  //
+    DILOG.mesformdiv.style = "display:block;";
 }
+
 
 //////编辑//////
 DILOG.edittxt = function() {
@@ -319,6 +331,9 @@ DILOG.edittxt = function() {
   DILOG.texts.value = DILOG.texts.value.replaceAll(/<pre><code><button class="copybtn btn btn-default btn-sm" onclick="IFR.copy\(this\)">复制<\/button>/,'<pre><code>');  
   //输入框高度
   DILOG.dilog(DILOG.texts);
+  //
+  DILOG.mesformdiv.style = "display:none;";
+  DILOG.readiframe.height = DILOG.winheight * 0.81;  //修改 
 }
 
 //////预览//////
@@ -332,6 +347,8 @@ DILOG.preview = function() {
   DILOG.btnxg.style.display = "block"; 
 //
   DILOG.page({tid: "", ttit: DILOG.title.value, tcont: DILOG.texts.value});
+
+
 }
 
 

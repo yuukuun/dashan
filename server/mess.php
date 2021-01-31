@@ -34,14 +34,16 @@ class Mess {
     return $status;
   }
 
-  // private function mess_query(){
-  //   $sql = "select mid,mtext from t_mes";  
-  //   $res = $this->mysqlcon->query($sql);  
-  //       while($row = $res->fetch_assoc()){
-  //         $arr[] = $row;
-  //       }
-  //   return $arr;
-  // }
+
+//获取文章留言
+  public function get_mess($id){
+    $sql = "select mtext from t_mes where tid='$id'";  
+    $res = $this->mysqlcon->query($sql);  
+        while($row = $res->fetch_assoc()){
+          $arr[] = $row;
+        }
+    echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+  }
 
 
 
@@ -56,23 +58,24 @@ class Mess {
     echo json_encode($status, JSON_UNESCAPED_UNICODE);
   }
 
-  // public function json(){
-  //   return json_encode($this->mess_query(), JSON_UNESCAPED_UNICODE);
-  // }
 }
 $mess = new Mess();
 
+
+
 // echo $_POST['mestexts']."<br>";
-echo $_POST['mestid']."<br>";
+// echo $_POST['mestid']."<br>";
 
 
-// if ( $_POST['mestexts'] != "" && $_POST['mestids'] != "" ) {
+
+//写留言
 if ( $_POST['mestexts'] != "" ) {
     if ( $mess->login($_SESSION["username"] , $_SESSION["password"] ) ) {
         $mess->mess_insert( $_POST['mestexts'] , $_POST['mestid']);
    }
-// }elseif  ( $_POST['tid'] != "" ) {   
-//     $mess->get_mess( $_POST['tid'] );
+//读取留言
+}elseif ( $_GET['name'] == "getmess" ) {   
+    $mess->get_mess( $_GET['id'] );
 }else{
   echo "mess出错";
 }

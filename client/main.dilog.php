@@ -62,12 +62,12 @@
           <!-- 主要显示显示div -->
           <iframe id="readiframe" name="readiframe" frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes" width="100%"></iframe> 
 
-          <div class="mesformdiv">  
+          <div><div id="mesformdiv">
             <form method="post" id="mesform" target="temp" action="server/mess.php">
         <!--      <div class="form-group"> <textarea class="form-control" id="mestexts" name="mestexts" placeholder="内容..." style="background-color: #e8e7e3;"></textarea></div>  -->
-            <textarea class="form-control" id="mestexts" name="mestexts" placeholder="内容..." style="background-color: #e8e7e3;"></textarea>
+            <textarea class="form-control" id="mestexts" name="mestexts" placeholder="内容..." ></textarea>
             <input type="hidden" class="form-control" id="mestid" name="mestid">
-            <input onclick="ifrsubmit()" id="messubmit" type="submit" class="block btn btn-primary btn-sm" value="留言">
+            <input onclick="ifrsubmit()" id="messubmit" type="submit" class="block btn btn-primary btn-sm" value="留言"></div>   
              <!-- 关闭按钮 -->
           <?php  if ( isset($_SESSION['username']) && isset($_SESSION['password']) && $_GET['s'] != "" ) {    
                echo "<button onclick=\"DILOG.delete()\" id=\"btndl\" type=\"button\" class=\"btn btn-danger btn-sm\"  data-dismiss=\"modal\">删除</button>";
