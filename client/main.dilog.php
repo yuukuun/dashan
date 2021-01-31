@@ -86,23 +86,39 @@
 </div>
 
 <script type="text/javascript">
-var mesform = document.getElementById("mesform");   //读文章框架
+// var mesform = document.getElementById("mesform");   //读文章框架
 var mestexts = document.getElementById("mestexts");   //读文章框架
-var mestid = document.getElementById("mestid");   //读文章框架
-var mesport = document.getElementById("mesport");   //读文章框架
+// var mestid = document.getElementById("mestid");   //读文章框架
+// var mesport = document.getElementById("mesport");   //读文章框架
 //////提交文章//////
 ifrsubmit = function(){
       mestid.value = DILOG.ids.value;
-      // mestid.value = "2";
+      // let mes = `<pre id="message"><code>` + mestexts.value + `</code></pre>`;
+      //  DILOG.readiframe.contentWindow.document.body.appendChild(mes); 
+
+    let pre = document.createElement("pre");
+    let br = document.createElement("br");
+    pre.setAttribute("id","message");
+
+    let temp = mestexts.value.replaceAll("<","&lt;");
+    temp = temp.replaceAll(">","&gt;");
+
+    pre.innerHTML = "<code>" + temp + "<code>";
+
+    //DILOG.readiframe.contentWindow.document.body.appendChild(pre); 
+    DILOG.readiframe.contentWindow.document.getElementById('ifrmess').appendChild(pre); 
+
+    // mestexts.value = "";
+    // let obj =  DILOG.readiframe.contentWindow; 
+    // let tags = obj.document.getElementById('ifrmess');
+    // tags.innerHTML = `<pre id="message"><code>`+ mestexts.value +`</code></pre>`;;
 
 
-//     let pre = document.createElement("pre");
-//     let br = document.createElement("br");
-//     pre.setAttribute("id","message");
-//     pre.innerHTML = "<code>" + mestexts.value + "<code>";
-//      pre.style = "border-top: 7px;";
-//     mesport.appendChild(pre);
-//     pre.appendChild(br);
+    
+    
+     // pre.style = "border-top: 7px;";
+    // mesport.appendChild(pre);
+    // pre.appendChild(br);
 }
 
 // DILOG.readiframe.contentWindow.document.body.appendChild(mesport); 

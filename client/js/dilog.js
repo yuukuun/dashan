@@ -81,6 +81,7 @@ DILOG.btnyl = document.getElementById("btnyl"); //预览按钮
 DILOG.btnbj = document.getElementById("btnbj"); //编辑按钮
 
 
+
 ///////////////////////////////////////////////////////// readiframe框架内元素 /////////////////////////////////////////////////////////
 var IFR = {};
 //html头
@@ -88,7 +89,7 @@ IFR.htmlhead = `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="client/css/bootstrap.min.css">
 <link rel="stylesheet" href="client/css/index.css"></head><body class="bg-light"><main role="main"><span class="contents">`;
 //html尾
-IFR.htmlfoot = `</span></main></body></html><hr>`;
+IFR.htmlfoot = `</span></main></body></html><hr><span  id="ifrmess"></span>`;
 
 
 // IFR.shomcomments = function(){
@@ -198,11 +199,15 @@ DILOG.page = function(json) {
     DILOG.mestexts.value = "";
     //
     IFR.mess = "";
+    if (json.mess === null) {
+          IFR.mess = "";
+    }else{
       for (var i = 0; i < json.mess.length; i++) {
       // console.log(json.mess[i].mtext);
         IFR.mess = IFR.mess + `<pre id="message"><code>` + json.mess[i].mtext + `</code></pre>`;
        }
-
+    }
+ 
     
     // IFR.mess = `<pre id="message"><code>` + json.mtext + `</code></pre>`;
     // 发送html文件到readiframe 样式文件在 index.css 和 index.js 内    
@@ -233,6 +238,9 @@ DILOG.note = function() {
   DILOG.btnxg.style.display = "block";  
   //输入框高度
   DILOG.dilog(DILOG.texts);
+  //
+  DILOG.mesformdiv.style = "display:none;";
+ DILOG.readiframe.height = DILOG.winheight * 0.81;  //修改 
 }
 
 //////写文章//////
@@ -255,6 +263,9 @@ DILOG.instxt = function() {
     DILOG.gets('server/users.class.php?name=insert', DILOG.instxtpre);
   //输入框高度
   DILOG.dilog(DILOG.texts);
+  //
+  DILOG.mesformdiv.style = "display:none;";
+DILOG.readiframe.height = DILOG.winheight * 0.81;  //修改 
 }
 
 //////youtube//////

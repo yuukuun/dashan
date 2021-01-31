@@ -137,15 +137,17 @@
 }
 #message {
 /*  position: relative;*/
-    border-radius: 5px;
-    border-top: 7px;
+    border-radius: 4px;
+   /* border-top: 7px;*/
 
     padding: 7px;
-    padding-right: 6px;
-    border-radius: 6px;
+/*    padding-right: auto;
+    padding-right: auto;*/
+ /*   border-radius: 6px;*/
+/* margin-left: auto;*/
 
-    background-color: green;
-    color: #e8e7e3;
+    background-color:   #E8E8E8;
+    color: #363636;
     font: 14px/24px arial,sans-serif;
    /* width: 50%;*/
    white-space: pre-wrap;           /* css-3 */
